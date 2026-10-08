@@ -1,0 +1,47 @@
+
+0->1 password: 6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR
+1->2 password: PK8fYLZg2hnHSz83plBL1iEPKdD3QToB
+A: cat < -
+
+2->3 password: 7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME
+A: cat -- "--spaces in this filename--"
+
+3->4 password: xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq
+A: ls -a
+
+4->5 password: 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
+A: cat -- *
+
+5->6 password: pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
+A: find -type f -size 1033c ! executable
+
+6->7 password: Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+A: [first go to root]
+find -type f -size 33c -user bandit7 -group bandit6
+
+7->8 password: VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+A: grep "millionth" data.txt
+
+8->9 password: EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+A: sort data.txt | uniq -u
+
+9->10 password: B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+A: strings data.txt | grep '='
+
+10->11 password: pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+A: base64 -d data.txt (decode the data from base64 into its orignal form)
+
+11->12 password: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+A: cat data.txt | tr '[A-Z]' '[N-ZA-M]' | tr '[a-z]' '[n-za-m]'
+
+12->13 password: qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+A: 1. mktemp-d (output is random folder in tmp, but in this case was /tmp/tmp.sg31dm6EUl)
+2. xxd -r data.txt > /tmp/tmp.sg31dm6EUl/restore.bin
+3. cd /tmp/tmp.sg31dm6EUl/
+4. use file [filename] to find out what type of compression it is: gzip, bzip2, tar and use either
+A. gzip -d [filename].gz 
+B. bzip2 -d [filename].bz2
+C. tar -xf [filename].tar
+
+for some reason, at some point one of the outputs string [filename] had the name data5.bin, so i did find -type f -name data5.bin 2>/dev/null and it was actually there
+and not blocked by lack of permission and more decompressing got me the right password? i dont think i was supposed to find data5.bin in the server tho, idk
